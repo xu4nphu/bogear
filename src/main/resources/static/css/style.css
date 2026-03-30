@@ -1,0 +1,146 @@
+/* =======================================================
+   BO GEAR 2026 - HI-END NAVY BLUE STYLE (FIXED LAYOUT)
+   ======================================================= */
+:root {
+    --primary: #003366;
+    --accent: #007bff;
+    --bg-body: #f4f7f9;
+    --text-main: #1c1e21;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-body) !important;
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
+
+/* 1. FIX GRID SYSTEM - CHI CHIA 5 CỘT TRÊN PC */
+.row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-right: -10px !important;
+    margin-left: -10px !important;
+}
+
+/* Ép cứng 5 cột trên màn hình lớn */
+@media (min-width: 1200px) {
+    .row-cols-lg-5 > .col {
+        flex: 0 0 20% !important;
+        max-width: 20% !important;
+        width: 20% !important;
+        padding: 10px !important;
+    }
+}
+
+/* Tablet: 3 cột */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .row-cols-md-3 > .col {
+        flex: 0 0 33.333% !important;
+        max-width: 33.333% !important;
+        width: 33.333% !important;
+        padding: 8px !important;
+    }
+}
+
+/* Mobile: 2 cột */
+@media (max-width: 767px) {
+    .row-cols-2 > .col {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        width: 50% !important;
+        padding: 5px !important;
+    }
+}
+
+/* 2. CARD SẢN PHẨM (NÂNG CẤP) */
+.product-card {
+    background: var(--white);
+    border: 1px solid #eee !important;
+    border-radius: 10px;
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card:hover {
+    border-color: var(--accent) !important;
+    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.12);
+    transform: translateY(-5px);
+}
+
+/* Fix ảnh sản phẩm */
+.product-card img {
+    width: auto !important;
+    max-width: 100% !important;
+    height: 160px !important;
+    object-fit: contain !important;
+    margin: 0 auto 15px !important;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.08);
+}
+
+/* 3. TEXT & PRICE */
+.product-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    height: 38px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.price-now {
+    color: #d70018; /* Màu đỏ giá tiền chuyên nghiệp */
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: block;
+}
+
+/* 4. NÚT BẤM (BUTTONS) */
+.btn-buy {
+    background: var(--primary) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    width: 100% !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    margin-top: auto;
+    transition: 0.3s;
+}
+
+.btn-buy:hover {
+    background: var(--accent) !important;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* 5. HEADER & NAVBAR */
+.navbar {
+    background: var(--primary) !important;
+    border-bottom: 4px solid var(--accent);
+}
+
+.navbar-brand span {
+    color: #00d4ff; /* Màu xanh neon cho chữ GEAR */
+    font-weight: 900;
+}
+
+/* Hiệu ứng badge giỏ hàng */
+.badge-cart {
+    background-color: #ff4d4f !important;
+    font-size: 10px;
+    padding: 3px 6px;
+}

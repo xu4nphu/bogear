@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: dynamic(~{::main})}">
+<main>
+    <div class="container mt-4 mb-5">
+        <div class="row">
+            <aside class="col-lg-3 d-none d-lg-block">
+                <div class="bg-white rounded-3 shadow-sm p-4 sticky-top" style="top: 100px;">
+                    <h6 class="fw-bold mb-4 text-primary border-bottom pb-2">
+                        <i class="bi bi-cpu me-2"></i>DANH MỤC LINH KIỆN
+                    </h6>
+                    <ul class="list-unstyled mb-5">
+                        <li th:each="c : ${cates}" class="py-2 border-bottom border-light">
+                            <a th:href="@{|/bogear/product/list?cid=${c.id}|}"
+                               class="text-decoration-none text-dark hover-navy d-flex justify-content-between align-items-center small fw-semibold">
+                                [[${c.name}]] <i class="bi bi-chevron-right opacity-50" style="font-size: 10px;"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="fw-bold mb-3 text-primary border-bottom pb-2">KHOẢNG GIÁ</h6>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="priceRange" id="p1">
+                        <label class="form-check-label small text-secondary" for="p1">Dưới 5.000.000đ</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="priceRange" id="p2">
+                        <label class="form-check-label small text-secondary" for="p2">5tr - 15tr</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="priceRange" id="p3">
+                        <label class="form-check-label small text-secondary" for="p3">Trên 15.000.000đ</label>
+                    </div>
+
+                    <button class="btn btn-outline-primary btn-sm w-100 mt-3 fw-bold rounded-pill">LỌC SẢN PHẨM</button>
+                </div>
+            </aside>
+
+            <section class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded-3 shadow-sm border">
+                    <div class="fw-bold text-muted small">
+                        <span class="text-primary">[[${items.size()}]]</span> SẢN PHẨM ĐANG HIỂN THỊ
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="small text-muted fw-semibold">Sắp xếp:</span>
+                        <select class="form-select form-select-sm border-0 bg-light fw-bold" style="width: 150px;">
+                            <option>Mới nhất</option>
+                            <option>Giá tăng dần</option>
+                            <option>Giá giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" v-pre>
+                    <div th:each="p : ${items}" class="col">
+                        <div class="product-card">
+                            <a th:href="@{|/product/detail/${p.id}|}" class="text-decoration-none">
+                                <div class="text-center bg-light rounded p-2" style="height: 160px; display: flex; align-items: center;">
+                                    <img th:src="@{|/images/${p.image}|}" class="img-fluid"
+                                         style="max-height: 100%; object-fit: contain;"
+                                         onerror="this.src='https://via.placeholder.com/200?text=Bo+Gear'">
+                                </div>
+                                <div class="product-name mt-2">[[${p.name}]]</div>
+                            </a>
+                            <div class="mt-auto">
+                                <div class="price-now mb-2">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]]đ</div>
+                                <button th:attr="onclick=|cart.add(${p.id})|" class="btn btn-buy">
+                                    <i class="bi bi-cart-plus-fill me-1"></i> THÊM GIỎ HÀNG
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link shadow-sm border-0" href="#"><i class="bi bi-chevron-left"></i></a></li>
+                        <li class="page-item active"><a class="page-link shadow-sm border-0" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link shadow-sm border-0" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link shadow-sm border-0" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </div>
+</main>
+</html>

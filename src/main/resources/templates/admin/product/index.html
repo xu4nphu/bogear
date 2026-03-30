@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-dark min-vh-100 p-3 shadow">
+            <h5 class="text-white fw-bold mb-4">ADMIN PANEL</h5>
+            <ul class="nav flex-column gap-2">
+                <li class="nav-item"><a href="#" class="nav-link text-white active bg-primary rounded"><i class="bi bi-box-seam me-2"></i>Sản phẩm</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-secondary"><i class="bi bi-people me-2"></i>Người dùng</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-secondary"><i class="bi bi-receipt me-2"></i>Đơn hàng</a></li>
+            </ul>
+        </nav>
+
+        <main class="col-md-10 p-5 bg-light">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold">QUẢN LÝ LINH KIỆN</h3>
+                <button class="btn btn-primary fw-bold px-4">+ Thêm linh kiện mới</button>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <table class="table table-hover m-0 align-middle">
+                    <thead class="table-dark small">
+                    <tr>
+                        <th class="ps-4">ID</th>
+                        <th>HÌNH ẢNH</th>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th>GIÁ BÁN</th>
+                        <th>DANH MỤC</th>
+                        <th class="text-center">THAO TÁC</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="ps-4">#1</td>
+                        <td><img th:src="@{/images/cpu1.png}" style="width: 40px;"></td>
+                        <td class="fw-bold">CPU Intel Core i9-14900K</td>
+                        <td>15,000,000đ</td>
+                        <td>CPU</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-info text-white"><i class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>

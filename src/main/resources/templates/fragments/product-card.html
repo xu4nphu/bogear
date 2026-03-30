@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="card(p)" class="col" th:if="${p != null}">
+    <div class="card h-100 border-0 shadow-sm product-card">
+        <div class="p-3 text-center">
+            <img th:src="@{|/images/${p.image}|}" class="card-img-top img-fluid"
+                 style="height: 160px; object-fit: contain;"
+                 onerror="this.src='https://via.placeholder.com/200'">
+        </div>
+
+        <div class="card-body d-flex flex-column p-3">
+            <h6 class="fw-bold text-dark small mb-2">[[${p.name}]]</h6>
+
+            <div class="mt-auto">
+                <p class="text-danger fw-bold mb-2">
+                    [[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]]đ
+                </p>
+
+                <button th:attr="onclick=|cart.add(${p.id})|"
+                        class="btn btn-primary w-100 btn-sm fw-bold shadow-sm">
+                    <i class="bi bi-cart-plus-fill me-1"></i> THÊM GIỎ HÀNG
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

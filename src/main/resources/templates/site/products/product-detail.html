@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: dynamic(~{::main})}">
+<main>
+    <div class="container mt-4 mb-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb small bg-white p-2 rounded shadow-sm">
+                <li class="breadcrumb-item"><a th:href="@{/bogear/home}" class="text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item">
+                    <a href="#" class="text-decoration-none">
+                        [[${p.category != null ? p.category.name : 'Linh kiện'}]]
+                    </a>
+                </li>
+                <li class="breadcrumb-item active text-truncate" style="max-width: 200px;">[[${p.name}]]</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4 p-4 bg-white rounded-4 shadow-sm">
+            <div class="col-md-5 text-center border-end pe-md-5">
+                <div class="p-4 bg-light rounded-4 d-flex align-items-center justify-content-center" style="min-height: 400px;">
+                    <img th:src="@{|/images/${p.image}|}" class="img-fluid zoom-effect"
+                         style="max-height: 350px; object-fit: contain;"
+                         onerror="this.src='https://via.placeholder.com/400?text=Bo+Gear'">
+                </div>
+            </div>
+
+            <div class="col-md-7 ps-md-5">
+                <h2 class="fw-bold text-primary mb-3 mt-2">[[${p.name}]]</h2>
+
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <span class="badge bg-success px-3 py-2 rounded-pill"><i class="bi bi-check2-circle me-1"></i>Còn hàng</span>
+                    <span class="text-muted small">Mã linh kiện: <strong class="text-dark">#BG-[[${p.id}]]</strong></span>
+                    <div class="text-warning small">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                        <span class="text-muted">(12 đánh giá)</span>
+                    </div>
+                </div>
+
+                <div class="p-3 mb-4 border-start border-4 border-primary bg-light">
+                    <h3 class="text-danger fw-bold mb-0" style="font-size: 2rem;">
+                        [[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]]đ
+                    </h3>
+                    <small class="text-muted">Giá đã bao gồm VAT</small>
+                </div>
+
+                <div class="mb-4 p-3 border rounded-3 bg-white">
+                    <h6 class="fw-bold text-uppercase small text-muted mb-3">Thông số & Ưu đãi</h6>
+                    <div class="row g-2">
+                        <div class="col-6 small"><i class="bi bi-shield-check text-primary me-2"></i>Bảo hành 36 tháng</div>
+                        <div class="col-6 small"><i class="bi bi-truck text-primary me-2"></i>Giao hỏa tốc 2H</div>
+                        <div class="col-6 small"><i class="bi bi-box-seam text-primary me-2"></i>Fullbox mới 100%</div>
+                        <div class="col-6 small"><i class="bi bi-arrow-repeat text-primary me-2"></i>Lỗi 1 đổi 1 trong 30 ngày</div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-3 d-md-flex mt-4">
+                    <button th:attr="onclick=|cart.add(${p.id})|" class="btn btn-buy btn-lg px-5 py-3 fw-bold flex-grow-1 shadow">
+                        <i class="bi bi-cart-plus-fill me-2 fs-5"></i>THÊM VÀO GIỎ HÀNG
+                    </button>
+                    <button class="btn btn-danger btn-lg px-4 fw-bold shadow">
+                        MUA NGAY
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 bg-white rounded-4 shadow-sm p-4">
+                <h5 class="fw-bold border-bottom pb-3 mb-4 text-primary">ĐẶC ĐIỂM NỔI BẬT</h5>
+                <div class="lh-lg text-secondary">
+                    <p>Sản phẩm <strong>[[${p.name}]]</strong> là lựa chọn tối ưu cho hệ thống PC Hi-end của bạn tại Bo Gear. Với công nghệ tiên tiến, thiết kế tản nhiệt tối ưu và độ bền chuẩn quân đội, đây chắc chắn là linh kiện không thể thiếu cho các Game thủ và Designer chuyên nghiệp.</p>
+                    <ul>
+                        <li>Tối ưu hóa hiệu năng cho các tựa game AAA mới nhất.</li>
+                        <li>Sử dụng linh kiện cao cấp giúp hoạt động ổn định 24/7.</li>
+                        <li>Hỗ trợ ép xung mạnh mẽ và tùy chỉnh LED RGB (nếu có).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .zoom-effect { transition: transform 0.5s ease; cursor: zoom-in; }
+        .zoom-effect:hover { transform: scale(1.1); }
+        .breadcrumb-item + .breadcrumb-item::before { content: "›"; font-size: 1.2rem; line-height: 1; }
+    </style>
+</main>
+</html>

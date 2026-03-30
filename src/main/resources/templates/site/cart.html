@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: dynamic(~{::main})}">
+<main>
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold text-primary m-0">GIỎ HÀNG BO GEAR</h4>
+            <button @click="cart.clear()" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-bold" v-if="cart.items.length > 0">
+                <i class="bi bi-trash3 me-1"></i> XÓA TẤT CẢ
+            </button>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div v-if="cart.items.length == 0" class="card border-0 shadow-sm rounded-4 p-5 text-center">
+                    <i class="bi bi-cart-x text-muted mb-3" style="font-size: 4rem;"></i>
+                    <h5>Giỏ hàng của Phú đang trống!</h5>
+                    <a th:href="@{/bogear/home}" class="btn btn-primary mt-3 px-4 rounded-pill fw-bold">QUAY LẠI MUA SẮM</a>
+                </div>
+
+                <div v-else class="card border-0 shadow-sm rounded-4 overflow-hidden shadow">
+                    <table class="table align-middle m-0">
+                        <thead class="bg-light text-secondary small fw-bold text-uppercase">
+                        <tr>
+                            <th class="ps-4 py-3">Sản phẩm</th>
+                            <th class="py-3">Giá</th>
+                            <th class="py-3 text-center" style="width: 140px;">Số lượng</th>
+                            <th class="py-3">Tổng</th>
+                            <th class="py-3 text-center">Xóa</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="item in cart.items" :key="item.id">
+                            <td class="ps-4 py-3">
+                                <div class="d-flex align-items-center">
+                                    <img :src="'/images/' + item.image" style="width: 50px; height: 50px; object-fit: contain;" class="me-3">
+                                    <span class="small fw-bold text-dark">{{item.name}}</span>
+                                </div>
+                            </td>
+                            <td class="small fw-bold">{{item.price.toLocaleString()}}đ</td>
+                            <td>
+                                <div class="input-group input-group-sm border rounded-pill overflow-hidden">
+                                    <button @click="item.qty > 1 ? item.qty-- : cart.remove(item.id); cart.saveToLocalStorage()" class="btn btn-light border-0">-</button>
+                                    <input type="number" class="form-control border-0 text-center fw-bold bg-white" v-model.number="item.qty" readonly>
+                                    <button @click="item.qty++; cart.saveToLocalStorage()" class="btn btn-light border-0">+</button>
+                                </div>
+                            </td>
+                            <td class="fw-bold text-primary small">{{(item.price * item.qty).toLocaleString()}}đ</td>
+                            <td class="text-center">
+                                <button @click="cart.remove(item.id)" class="btn btn-link text-danger"><i class="bi bi-x-circle-fill fs-5"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4" v-if="cart.items.length > 0">
+                <div class="card border-0 shadow-sm rounded-4 p-4 sticky-top" style="top: 100px;">
+                    <h6 class="fw-bold text-muted mb-4">TỔNG ĐƠN HÀNG</h6>
+                    <div class="d-flex justify-content-between mb-4 border-bottom pb-3">
+                        <span class="h5 fw-bold">THÀNH TIỀN:</span>
+                        <span class="h5 fw-bold text-danger">{{cart.amount.toLocaleString()}}đ</span>
+                    </div>
+                    <button class="btn btn-buy btn-lg w-100 py-3 fw-bold">THANH TOÁN NGAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</html>

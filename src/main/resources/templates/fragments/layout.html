@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bo Gear | Hi-end PC & Gaming Gear</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style> [v-cloak] { display: none; } </style>
+</head>
+
+<body style="background-color: #f8f9fa;">
+
+<div id="app" v-cloak>
+    <header th:replace="~{site/menu/menu :: header}"></header>
+
+    <main th:replace="${main}"></main>
+
+    <footer class="mt-5 py-5 border-top bg-white">
+        <div class="container">
+            <div class="row g-4 text-dark text-start"> <div class="col-md-4">
+                <div class="mb-3">
+                    <img th:src="@{/images/logo.png}" alt="Bo Gear Logo" style="height: 50px;">
+                </div>
+                <p class="text-secondary small">
+                    Hệ thống bán lẻ linh kiện PC Gaming & Workstation cao cấp hàng đầu Việt Nam.
+                </p>
+                <div class="fs-4 mt-3">
+                    <i class="bi bi-facebook me-3 text-primary"></i>
+                    <i class="bi bi-youtube me-3 text-danger"></i>
+                    <i class="bi bi-discord" style="color: #5865F2;"></i>
+                </div>
+            </div>
+
+                <div class="col-md-4">
+                    <h6 class="text-primary mb-3 text-uppercase fw-bold">Dịch vụ & Hỗ trợ</h6>
+                    <ul class="list-unstyled small lh-lg text-secondary">
+                        <li>Chính sách bảo hành 1 đổi 1</li>
+                        <li>Giao hàng hỏa tốc 2H</li>
+                        <li>Trả góp 0% qua thẻ tín dụng</li>
+                        <li>Xây dựng cấu hình PC</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h6 class="text-primary mb-3 text-uppercase fw-bold">Kết nối với Bo Gear</h6>
+                    <p class="small text-secondary mb-2"><i class="bi bi-geo-alt-fill me-2 text-primary"></i> CVPM Quang Trung, Q.12, TP.HCM</p>
+                    <p class="small text-secondary mb-2"><i class="bi bi-telephone-fill me-2 text-primary"></i> 1900 1234 (Phú Support 24/7)</p>
+                    <p class="small text-secondary mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i> contact@bogear.com.vn</p>
+                </div>
+            </div>
+
+            <hr class="my-4 opacity-25">
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-muted">
+                <p class="mb-0">© 2026 <strong>BO GEAR</strong>. All rights reserved.</p>
+                <p class="mb-0 mt-2 mt-md-0">Designed by <span class="text-primary fw-bold">Vo Xuan Phu (PS45558)</span> | FPT Polytechnic</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script th:src="@{/js/shopping-cart-app.js}"></script>
+
+</body>
+</html>
